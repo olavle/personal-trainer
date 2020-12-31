@@ -21,7 +21,7 @@ const Customerlist = () => {
 
   const colums = [
     { field: 'firstname', sortable: true, filter: true },
-    { field: 'lastname', sortable: true, filer: true },
+    { field: 'lastname', sortable: true, filter: true },
     { field: 'email', sortable: true, filter: true },
     { field: 'city', sortable: true, filter: true },
     { field: 'phone', sortable: true, filter: true },
