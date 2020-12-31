@@ -11,7 +11,7 @@ import { Toolbar } from '@material-ui/core';
 function App() {
   const [value, setValue] = useState('one');
 
-  const handleChange = (evetn, value) => {
+  const handleChange = (event, value) => {
     setValue(value);
   };
 
