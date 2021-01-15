@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { render } from 'react-dom'
-import { AgGridColumn, AgGridReact } from 'ag-grid-react'
+import { AgGridReact } from 'ag-grid-react'
 
-import 'ag-grid-community/dist/styles/ag-grid.css';
-import 'ag-grid-community/dist/styles/ag-theme-material.css';
+import 'ag-grid-community/dist/styles/ag-grid.css'
+import 'ag-grid-community/dist/styles/ag-theme-material.css'
 
 const Traininglist = () => {
   const [trainings, setTrainings] = useState([])
@@ -28,7 +27,7 @@ const Traininglist = () => {
   ]
 
   return (
-    <div className='ag-theme-material' style={{ height: 400, width: '80%' }}>
+    <div className='ag-theme-material' style={{ height: 400, width: '100%' }}>
       <AgGridReact columnDefs={colums} rowData={trainings} />
     </div>
   )
