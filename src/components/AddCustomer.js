@@ -6,7 +6,7 @@ import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogTitle from '@material-ui/core/DialogTitle'
 
-const EditCustomer = ({ params, updateCustomer }) => {
+const AddCustomer = ({addCustomer}) => {
   const [open, setOpen] = useState(false)
   const [customer, setCustomer] = useState({
     firstname: '',
@@ -17,13 +17,6 @@ const EditCustomer = ({ params, updateCustomer }) => {
   })
 
   const handleClickOpen = () => {
-    setCustomer({
-      firstname: params.data.firstname,
-      lastname: params.data.lastname,
-      email: params.data.email,
-      city: params.data.city,
-      phone: params.data.phone,
-    })
     setOpen(true)
   }
 
@@ -39,7 +32,7 @@ const EditCustomer = ({ params, updateCustomer }) => {
   }
 
   const handleSave = () => {
-    updateCustomer(params.data.links[0].href, customer)
+    addCustomer(customer)
     handleClose()
   }
 
@@ -52,10 +45,10 @@ const EditCustomer = ({ params, updateCustomer }) => {
           color='primary'
           onClick={handleClickOpen}
         >
-          Edit
+          Add new customer
         </Button>
         <Dialog open={open} onClose={handleClose}>
-          <DialogTitle>Update Customer</DialogTitle>
+          <DialogTitle>New customer</DialogTitle>
           <DialogContent>
             <TextField
               margin='dense'
@@ -112,4 +105,4 @@ const EditCustomer = ({ params, updateCustomer }) => {
   )
 }
 
-export default EditCustomer
+export default AddCustomer
