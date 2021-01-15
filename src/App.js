@@ -1,6 +1,7 @@
 import './App.css'
 import Customerlist from './components/Customerlist'
 import Tarinerlist from './components/Traininglist'
+import CalendarView from './components/CalendarView'
 import AppBar from '@material-ui/core/AppBar'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
@@ -34,7 +35,7 @@ function App() {
       </AppBar>
       {value === 'one' && <Customerlist />}
       {value === 'two' && <Tarinerlist />}
-      {value === 'three' && <div>Calendar View here</div>}
+      {value === 'three' && <CalendarView />}
     </div>
   )
 }

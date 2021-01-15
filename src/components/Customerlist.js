@@ -7,6 +7,7 @@ import 'ag-grid-community/dist/styles/ag-grid.css'
 import 'ag-grid-community/dist/styles/ag-theme-material.css'
 import EditCustomer from './EditCustomer'
 import AddCustomer from './AddCustomer'
+import AddTraining from './AddTraining'
 
 const Customerlist = () => {
   const [customers, setCustomers] = useState([])
@@ -70,6 +71,21 @@ const Customerlist = () => {
     .catch(err => console.error(err))
   }  
 
+  const addTraining = (newTraining) => {
+    fetch('https://customerrest.herokuapp.com/api/trainings', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(newTraining)
+    })
+    .then(response => {
+      console.log('server gave response:', response)
+      getCustomers()
+    })
+    .catch(err => console.error(err))
+  }
+
   const colums = [
     { field: 'firstname', sortable: true, filter: true },
     { field: 'lastname', sortable: true, filter: true },
@@ -81,7 +97,7 @@ const Customerlist = () => {
       field: '',
       width: 90,
       cellRendererFramework: (params) => {
-        console.log(params)
+       
         return <EditCustomer updateCustomer={updateCustomer} params={params} />
       },
     },
@@ -96,12 +112,20 @@ const Customerlist = () => {
         </IconButton>
       ),
     },
+    {
+      headerName: '',
+      field: 'links.0.href',
+      width: 200,
+      cellRendererFramework: (params) => (
+        <AddTraining addTraining={addTraining} customerLink={params} />
+      )
+    }
   ]
 
   return (
     <div>
       <AddCustomer addCustomer={addCustomer} />
-      <div className='ag-theme-material' style={{ height: 400, width: '100%' }}>
+      <div className='ag-theme-material' style={{ height: 600, width: '100%' }}>
         <AgGridReact columnDefs={colums} rowData={customers} />
       </div>
       <Snackbar

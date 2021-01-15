@@ -5,21 +5,20 @@ import Dialog from '@material-ui/core/Dialog'
 import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogTitle from '@material-ui/core/DialogTitle'
+import moment from 'moment'
 
-const AddCustomer = ({ addCustomer }) => {
+const AddTraining = ({ customerLink ,addTraining }) => {
   const [open, setOpen] = useState(false)
-  const [customer, setCustomer] = useState({
-    firstname: '',
-    lastname: '',
-    streetaddress: '',
-    postcode: '',
-    city: '',
-    email: '',
-    phone: '',
+  const [training, setTraining] = useState({
+    date: '',
+    activity: '',
+    duration: '',
+    customer: customerLink.value,
   })
 
   const handleClickOpen = () => {
     setOpen(true)
+    console.log(customerLink)
   }
 
   const handleClose = () => {
@@ -27,14 +26,20 @@ const AddCustomer = ({ addCustomer }) => {
   }
 
   const inputChanged = (event) => {
-    setCustomer({
-      ...customer,
+    if (event.target.name === 'date') {
+        setTraining({
+            ...training,
+            date: moment(event.target.value).toISOString()
+        })
+    }
+    setTraining({
+      ...training,
       [event.target.name]: event.target.value,
     })
   }
 
   const handleSave = () => {
-    addCustomer(customer)
+    addTraining(training)
     handleClose()
   }
 
@@ -47,66 +52,34 @@ const AddCustomer = ({ addCustomer }) => {
           color='primary'
           onClick={handleClickOpen}
         >
-          Add new customer
+          Add new training
         </Button>
         <Dialog open={open} onClose={handleClose}>
-          <DialogTitle>New customer</DialogTitle>
+          <DialogTitle>New training</DialogTitle>
           <DialogContent>
             <TextField
               margin='dense'
-              label='Firstname'
+              label='Date'
               fullWidth
-              name='firstname'
-              value={customer.firstname}
+              name='date'
+              type='date'
+              value={training.date}
               onChange={inputChanged}
             />
             <TextField
               margin='dense'
-              label='Lastname'
+              label='Activity'
               fullWidth
-              name='lastname'
-              value={customer.lastname}
+              name='activity'
+              value={training.activity}
               onChange={inputChanged}
             />
             <TextField
               margin='dense'
-              label='Streetaddress'
+              label='Duration'
               fullWidth
-              name='streetaddress'
-              value={customer.streetaddress}
-              onChange={inputChanged}
-            />
-            <TextField
-              margin='dense'
-              label='Postcode'
-              fullWidth
-              name='postcode'
-              value={customer.postcode}
-              onChange={inputChanged}
-            />
-            <TextField
-              margin='dense'
-              label='City'
-              fullWidth
-              name='city'
-              value={customer.city}
-              onChange={inputChanged}
-            />
-            <TextField
-              margin='dense'
-              label='Email'
-              fullWidth
-              name='email'
-              value={customer.email}
-              onChange={inputChanged}
-            />
-
-            <TextField
-              margin='dense'
-              label='Phone'
-              fullWidth
-              name='phone'
-              value={customer.phone}
+              name='duration'
+              value={training.duration}
               onChange={inputChanged}
             />
           </DialogContent>
@@ -124,4 +97,4 @@ const AddCustomer = ({ addCustomer }) => {
   )
 }
 
-export default AddCustomer
+export default AddTraining

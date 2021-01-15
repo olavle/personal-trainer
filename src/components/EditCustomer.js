@@ -11,8 +11,10 @@ const EditCustomer = ({ params, updateCustomer }) => {
   const [customer, setCustomer] = useState({
     firstname: '',
     lastname: '',
-    email: '',
+    streetaddress: '',
+    postcode: '',
     city: '',
+    email: '',
     phone: '',
   })
 
@@ -75,10 +77,18 @@ const EditCustomer = ({ params, updateCustomer }) => {
             />
             <TextField
               margin='dense'
-              label='Email'
+              label='Streetaddress'
               fullWidth
-              name='email'
-              value={customer.email}
+              name='streetaddress'
+              value={customer.streetaddress}
+              onChange={inputChanged}
+            />
+            <TextField
+              margin='dense'
+              label='Postcode'
+              fullWidth
+              name='postcode'
+              value={customer.postcode}
               onChange={inputChanged}
             />
             <TextField
@@ -89,6 +99,15 @@ const EditCustomer = ({ params, updateCustomer }) => {
               value={customer.city}
               onChange={inputChanged}
             />
+            <TextField
+              margin='dense'
+              label='Email'
+              fullWidth
+              name='email'
+              value={customer.email}
+              onChange={inputChanged}
+            />
+
             <TextField
               margin='dense'
               label='Phone'
